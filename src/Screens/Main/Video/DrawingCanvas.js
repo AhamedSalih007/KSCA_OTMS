@@ -47,7 +47,7 @@ const DrawingCanvas = ({
       // Clean
       else {
         setShapes([]);
-        // updateFrameImage();
+        updateFrameImage();
       }
     }
   }, [isCapture]);
@@ -61,7 +61,7 @@ const DrawingCanvas = ({
       redoStack.current.push(popped);
       return newShapes;
     });
-    // updateFrameImage();
+    updateFrameImage();
   }, []);
 
   // Redo function
@@ -69,7 +69,7 @@ const DrawingCanvas = ({
     if (redoStack.current.length === 0) return;
     const shape = redoStack.current.pop();
     setShapes(prev => [...prev, shape]);
-    // updateFrameImage();
+    updateFrameImage();
   }, []);
 
   // Recreate PanResponder whenever `color` or `mode` changes
@@ -117,7 +117,7 @@ const DrawingCanvas = ({
             return null;
           });
 
-          // updateFrameImage();
+          updateFrameImage();
         },
       }),
     [color, mode],

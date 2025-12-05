@@ -201,7 +201,7 @@ const VideoMain = props => {
     return new Date(year, months[mon], day, hours, minutes);
   };
 
-  const getCommentsByVideo = async () => {
+  const getCommentsByVideo = async frame => {
     const response = await GetCommentsByVideo_CoachAPI(
       videos[currentVdoId].VideoId,
     );
@@ -260,11 +260,11 @@ const VideoMain = props => {
 
     setComments(sortedAll);
     setComments2(sortedFrame);
-    setCommentsFrame(sortedFrame);
+    frame ? setCommentsFrame(sortedFrame) : null;
   };
 
   useEffect(() => {
-    getCommentsByVideo();
+    getCommentsByVideo(true);
     getFramesByVideo();
 
     const data1 = ['Speed', 'Length', 'Line', 'Deviation', 'Beehive'];
@@ -599,7 +599,7 @@ const VideoMain = props => {
       setFrameNote(false);
       if (isPaint || isNotes) {
         cancelPaintHandle();
-        getCommentsByVideo();
+        getCommentsByVideo(true);
       } else {
         goBackhandle();
       }
@@ -655,7 +655,7 @@ const VideoMain = props => {
   const handleCaptureFullScreen = async () => {
     try {
       setIsCapture(true);
-      // setIsBuffering(true);
+      setIsBuffering(true);
       const base64 = await captureRef(captureRefWrapper, {
         format: 'png',
         quality: 0.9,
@@ -673,20 +673,20 @@ const VideoMain = props => {
       form.append('Content', base64String);
       form.append('Frametime', duration);
       // console.log('data', data);
-      // const responseFrame = await CreateNewFrameAPI(form);
-      // if (responseFrame != 'Error') {
-      //   const data = {
-      //     FrameId: responseFrame?.Data?.FrameId,
-      //     VideoId: videos[currentVdoId].VideoId,
-      //     FrameTime: duration,
-      //     FrameImageUrl: responseFrame?.Data?.FrameImageUrl,
-      //   };
-      //   setFrames([...frames, data]);
-      //   setCurrentFrameId(prev => prev + 1);
-      //   setIsBuffering(false);
-      // } else {
-      //   setIsBuffering(false);
-      // }
+      const responseFrame = await CreateNewFrameAPI(form);
+      if (responseFrame != 'Error') {
+        const data = {
+          FrameId: responseFrame?.Data?.FrameId,
+          VideoId: videos[currentVdoId].VideoId,
+          FrameTime: duration,
+          FrameImageUrl: responseFrame?.Data?.FrameImageUrl,
+        };
+        setFrames([...frames, data]);
+        setCurrentFrameId(prev => prev + 1);
+        setIsBuffering(false);
+      } else {
+        setIsBuffering(false);
+      }
       // console.log('Captured:', base64String.slice(0, 100));
     } catch (err) {
       console.log('captureRef error:', err);
@@ -732,8 +732,14 @@ const VideoMain = props => {
     }
   };
 
-  const updateNotes = () => {
-    getCommentsByVideo();
+  const updateNotes = async () => {
+    getCommentsByVideo(false);
+    // setTimeout(() => {
+    //   const filterFrames = comments2.filter(
+    //     d => d.frameId == frames[currentFrameId].FrameId,
+    //   );
+    //   setCommentsFrame(filterFrames);
+    // }, 400);
   };
 
   return (

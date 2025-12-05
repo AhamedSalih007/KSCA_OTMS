@@ -6,6 +6,7 @@ const localData = createSlice({
     userData: null,
     darkMode: false,
     tagList: {},
+    search: false,
   },
   reducers: {
     userDataAction: (state, action) => {
@@ -16,6 +17,9 @@ const localData = createSlice({
     },
     tagListAction: (state, action) => {
       state.tagList = action.payload;
+    },
+    searchAction: (state, action) => {
+      state.search = action.payload;
     },
   },
 });

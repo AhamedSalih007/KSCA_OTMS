@@ -444,7 +444,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = KSCA_OTMS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "KSCA OTMS";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -478,7 +478,7 @@
 				DEVELOPMENT_TEAM = 49GDTBJAFP;
 				INFOPLIST_FILE = KSCA_OTMS/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "KSCA OTMS";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

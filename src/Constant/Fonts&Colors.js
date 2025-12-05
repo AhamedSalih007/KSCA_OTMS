@@ -60,6 +60,7 @@ export const bgColor = {
   red: 'red',
   greyLight: '#E9ECF',
   borderStroke: '#41414A',
+  borderGrey: '#ddd',
 };
 
 export const lightTheme = {

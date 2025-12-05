@@ -45,6 +45,7 @@ export default function VideoThumbnail({
           height,
           justifyContent: 'center',
           alignItems: 'center',
+          zIndex: -10,
         }}>
         <View
           style={{
@@ -71,7 +72,7 @@ export default function VideoThumbnail({
   return (
     <>
       <Image
-        resizeMode="stretch"
+        resizeMode="cover"
         source={{uri: thumb}}
         style={{
           width,

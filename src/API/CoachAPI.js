@@ -276,3 +276,53 @@ export const EditTextCommentAPI = async data => {
     return 'Error';
   }
 };
+
+// -----------------Coach New API---------------------
+
+export const GetSessionMetaData_CoachAPI = async id => {
+  const resAPI = await axios
+    .get(
+      `${stagingUrl}/app/api/videoreport/getsessionmetadata?userid=297&sessionid=0`,
+      {
+        // timeout: 7000,
+      },
+    )
+    .then(res => {
+      console.log(
+        'res--->',
+        `${stagingUrl}/app/api/videoreport/getsessionmetadata?userid=297&sessionid=0`,
+      );
+
+      return res.data;
+    })
+    .catch(err => {
+      console.log(err);
+      return 'Error';
+    });
+
+  return resAPI;
+};
+
+export const GetUploadedVideos2_CoachAPI = async (userid, sessionid) => {
+  const resAPI = await axios
+    .get(
+      `${stagingUrl}/app/api/videoreport/getuploadedvideos?userid=297&sessionid=0`,
+      {
+        // timeout: 7000,
+      },
+    )
+    .then(res => {
+      console.log(
+        'res--->',
+        `${stagingUrl}/app/api/videoreport/getuploadedvideos?userid=297&sessionid=0`,
+      );
+
+      return res.data;
+    })
+    .catch(err => {
+      console.log(err);
+      return 'Error';
+    });
+
+  return resAPI;
+};

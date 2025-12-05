@@ -3,19 +3,21 @@ import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import user from '../Redux/ReducerSlices/UserSlice';
 import localdata from '../Redux/ReducerSlices/LocalDataSlice';
+import coachdata from '../Redux/ReducerSlices/CoachSlice';
 
 // persist config
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   whitelist: ['localdata'],
-  blacklist: ['user'],
+  blacklist: ['user', 'coachdata'],
 };
 
 // combine reducers (if you add more slices later)
 const rootReducer = combineReducers({
   user: user,
   localdata: localdata,
+  coachdata: coachdata,
 });
 
 // wrap root reducer with persist

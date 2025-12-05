@@ -199,7 +199,7 @@ export default function AudioRecorderButton({
             },
           ];
 
-          saveCommentsAPI(data, videoId, userId, frameId);
+          await saveCommentsAPI(data, videoId, userId, frameId);
           updateNotes();
 
           // You can now upload it to your API:
